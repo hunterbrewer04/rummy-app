@@ -9,6 +9,9 @@ struct GameDetailView: View {
     @State private var showingAddHand = false
     /// Drives the trophy bounce; toggled on appear (already-finished games) and on live finish.
     @State private var celebrate = false
+    @State private var lastDeleted: [(p1: Int, p2: Int, index: Int)] = []
+    @State private var showUndo = false
+    @State private var undoToken = 0
 
     var body: some View {
         List {
@@ -51,6 +54,22 @@ struct GameDetailView: View {
         }
         // `.id` forces a fresh confetti run if the winner changes.
         .overlay { if game.isFinished { ConfettiView().id(game.winnerName) } }
+        .overlay(alignment: .bottom) {
+            if showUndo {
+                HStack {
+                    Text("Hand deleted")
+                    Spacer()
+                    Button("Undo") { undoDelete() }.bold()
+                }
+                .padding().background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+                .padding()
+                .id(undoToken)
+                .task {
+                    try? await Task.sleep(for: .seconds(4))
+                    showUndo = false
+                }
+            }
+        }
         .onAppear {
             if game.isFinished { celebrate.toggle() }
         }
@@ -74,9 +93,24 @@ struct GameDetailView: View {
 
     private func deleteHands(at offsets: IndexSet) {
         let ordered = game.orderedHands
-        for index in offsets {
-            context.delete(ordered[index])
+        lastDeleted = offsets.map {
+            let h = ordered[$0]
+            return (h.player1Score, h.player2Score, h.index)
         }
+        for index in offsets { context.delete(ordered[index]) }
+        undoToken += 1
+        showUndo = true
+    }
+
+    private func undoDelete() {
+        guard !lastDeleted.isEmpty else { return }
+        for d in lastDeleted {
+            let hand = Hand(index: d.index, player1Score: d.p1, player2Score: d.p2)
+            hand.game = game
+            context.insert(hand)
+        }
+        lastDeleted = []
+        showUndo = false
     }
 }
 

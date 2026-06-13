@@ -7,6 +7,7 @@ struct GamesListView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
     @State private var showingNewGame = false
+    @State private var pendingDelete: IndexSet?
 
     var body: some View {
         NavigationStack {
@@ -29,8 +30,17 @@ struct GamesListView: View {
                                     GameRow(game: game)
                                 }
                             }
-                            .onDelete(perform: deleteGames)
+                            .onDelete { pendingDelete = $0 }
                         }
+                    }
+                    .confirmationDialog("Delete this game?",
+                                        isPresented: .constant(pendingDelete != nil),
+                                        titleVisibility: .visible) {
+                        Button("Delete", role: .destructive) {
+                            if let offsets = pendingDelete { deleteGames(at: offsets) }
+                            pendingDelete = nil
+                        }
+                        Button("Cancel", role: .cancel) { pendingDelete = nil }
                     }
                 }
             }
