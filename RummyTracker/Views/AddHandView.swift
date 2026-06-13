@@ -111,6 +111,7 @@ struct AddHandView: View {
             hand.game = game            // wires up the inverse relationship
             context.insert(hand)
         }
+        game.finalizeIfNeeded()
         dismiss()
     }
 }

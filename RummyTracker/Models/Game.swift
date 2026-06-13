@@ -14,6 +14,10 @@ final class Game {
     @Relationship(deleteRule: .cascade, inverse: \Hand.game)
     var hands: [Hand]
 
+    /// Snapshotted once the game is first decided. Durable across later edits.
+    var recordedWinnerName: String?
+    var finishedAt: Date?
+
     init(
         player1Name: String,
         player2Name: String,
@@ -25,6 +29,8 @@ final class Game {
         self.targetScore = targetScore
         self.createdAt = createdAt
         self.hands = []
+        self.recordedWinnerName = nil
+        self.finishedAt = nil
     }
 }
 
@@ -54,24 +60,27 @@ extension Game {
         ScoringEngine.total(of: hands.map(\.player2Score))
     }
 
-    /// `1`, `2`, or `nil` if the game is still going.
-    var winningPlayer: Int? {
-        ScoringEngine.winner(
-            player1Total: player1Total,
-            player2Total: player2Total,
-            target: targetScore
-        )
+    /// Live leader (1/2/nil) from current totals — used for UI highlight.
+    var winningPlayerLive: Int? {
+        ScoringEngine.winner(player1Total: player1Total, player2Total: player2Total, target: targetScore)
     }
 
-    var isFinished: Bool {
-        winningPlayer != nil
+    var isFinished: Bool { finishedAt != nil }
+    var winnerName: String? { recordedWinnerName }
+
+    /// Records the winner the first time the game is decided. Idempotent.
+    func finalizeIfNeeded(now: Date = .now) {
+        guard finishedAt == nil else { return }
+        guard let name = ScoringEngine.decidedWinnerName(
+            player1Name: player1Name, player2Name: player2Name,
+            player1Total: player1Total, player2Total: player2Total, target: targetScore) else { return }
+        recordedWinnerName = name
+        finishedAt = now
     }
 
-    var winnerName: String? {
-        switch winningPlayer {
-        case 1: return player1Name
-        case 2: return player2Name
-        default: return nil
-        }
+    /// Lets the user re-open a game to correct a mistake.
+    func reopen() {
+        recordedWinnerName = nil
+        finishedAt = nil
     }
 }

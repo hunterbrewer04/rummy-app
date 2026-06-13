@@ -39,4 +39,14 @@ enum ScoringEngine {
             return nil
         }
     }
+
+    /// The player NAME to permanently record as winner, or nil if undecided.
+    static func decidedWinnerName(player1Name: String, player2Name: String,
+                                  player1Total: Int, player2Total: Int, target: Int) -> String? {
+        switch winner(player1Total: player1Total, player2Total: player2Total, target: target) {
+        case 1: return player1Name
+        case 2: return player2Name
+        default: return nil
+        }
+    }
 }

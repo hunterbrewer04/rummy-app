@@ -12,6 +12,7 @@ struct GameDetailView: View {
     @State private var lastDeleted: [(p1: Int, p2: Int, index: Int)] = []
     @State private var showUndo = false
     @State private var undoToken = 0
+    @State private var showingReopenConfirm = false
 
     var body: some View {
         List {
@@ -42,7 +43,7 @@ struct GameDetailView: View {
                     ForEach(Array(game.orderedHands.enumerated()), id: \.element.id) { offset, hand in
                         HandRow(number: offset + 1, game: game, hand: hand)
                     }
-                    .onDelete(perform: deleteHands)
+                    .onDelete(perform: game.isFinished ? nil : deleteHands)
                 }
             }
         }
@@ -85,9 +86,22 @@ struct GameDetailView: View {
                 }
                 .disabled(game.isFinished)
             }
+            ToolbarItem(placement: .secondaryAction) {
+                if game.isFinished {
+                    Button("Reopen Game", systemImage: "lock.open") { showingReopenConfirm = true }
+                }
+            }
         }
         .sheet(isPresented: $showingAddHand) {
             AddHandView(game: game)
+        }
+        .confirmationDialog(
+            "Reopen this game? The recorded result will be cleared.",
+            isPresented: $showingReopenConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("Reopen", role: .destructive) { game.reopen() }
+            Button("Cancel", role: .cancel) { }
         }
     }
 
@@ -109,6 +123,7 @@ struct GameDetailView: View {
             hand.game = game
             context.insert(hand)
         }
+        game.finalizeIfNeeded()
         lastDeleted = []
         showUndo = false
     }
@@ -125,14 +140,14 @@ private struct ScoreHeaderView: View {
                     name: game.player1Name,
                     score: game.player1Total,
                     target: game.targetScore,
-                    isWinner: game.winningPlayer == 1
+                    isWinner: game.winningPlayerLive == 1
                 )
                 Divider()
                 PlayerScoreColumn(
                     name: game.player2Name,
                     score: game.player2Total,
                     target: game.targetScore,
-                    isWinner: game.winningPlayer == 2
+                    isWinner: game.winningPlayerLive == 2
                 )
             }
             Text("First to \(game.targetScore)")

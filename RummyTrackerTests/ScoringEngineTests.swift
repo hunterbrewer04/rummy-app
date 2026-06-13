@@ -35,4 +35,14 @@ struct ScoringEngineTests {
     @Test func exactTieAtTargetIsUndecided() {
         #expect(ScoringEngine.winner(player1Total: 500, player2Total: 500, target: 500) == nil)
     }
+
+    @Test func decidedWinnerNameReturnsLeader() {
+        #expect(ScoringEngine.decidedWinnerName(player1Name: "A", player2Name: "B",
+            player1Total: 510, player2Total: 300, target: 500) == "A")
+    }
+
+    @Test func decidedWinnerNameNilWhenUndecided() {
+        #expect(ScoringEngine.decidedWinnerName(player1Name: "A", player2Name: "B",
+            player1Total: 200, player2Total: 200, target: 500) == nil)
+    }
 }
