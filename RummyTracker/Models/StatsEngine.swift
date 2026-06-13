@@ -48,4 +48,29 @@ enum StatsEngine {
         }
         return best
     }
+
+    /// Head-to-head record between two specific players across the given results,
+    /// counting only games where both names appear (the matchup).
+    static func headToHead(player1: String, player2: String, in results: [GameResult])
+        -> (p1Wins: Int, p2Wins: Int, games: Int) {
+        let matchup = results.filter {
+            ($0.player1Name == player1 || $0.player2Name == player1) &&
+            ($0.player1Name == player2 || $0.player2Name == player2)
+        }
+        let p1 = matchup.filter { $0.winnerName == player1 }.count
+        let p2 = matchup.filter { $0.winnerName == player2 }.count
+        return (p1, p2, matchup.count)
+    }
+
+    /// Average absolute final-score margin across all results, rounded. 0 when empty.
+    static func averageWinningMargin(in results: [GameResult]) -> Int {
+        guard !results.isEmpty else { return 0 }
+        let total = results.reduce(0) { $0 + abs($1.player1Total - $1.player2Total) }
+        return Int((Double(total) / Double(results.count)).rounded())
+    }
+
+    /// Highest finishing score reached by either player across all results. 0 when empty.
+    static func bestScore(in results: [GameResult]) -> Int {
+        results.flatMap { [$0.player1Total, $0.player2Total] }.max() ?? 0
+    }
 }
