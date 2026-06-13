@@ -1,13 +1,24 @@
 import SwiftUI
 import SwiftData
 
-/// Home screen: a win tally across all finished games plus the list of games,
-/// newest first.
+/// Home dashboard: head-to-head series hero, in-progress game, recent games.
 struct GamesListView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
     @State private var showingNewGame = false
-    @State private var pendingDelete: IndexSet?
+    @State private var pendingDelete: Game?
+
+    /// Finished games as plain results, oldest → newest (for streak/series math).
+    private var results: [GameResult] {
+        games.reversed().compactMap { g in
+            guard let w = g.winnerName else { return nil }
+            return GameResult(player1Name: g.player1Name, player2Name: g.player2Name,
+                              player1Total: g.player1Total, player2Total: g.player2Total, winnerName: w)
+        }
+    }
+
+    private var activeGame: Game? { games.first { !$0.isFinished } }
+    private var finishedGames: [Game] { games.filter { $0.isFinished } }
 
     var body: some View {
         NavigationStack {
@@ -16,124 +27,82 @@ struct GamesListView: View {
                     ContentUnavailableView(
                         "No games yet",
                         systemImage: "suit.club.fill",
-                        description: Text("Tap + to start your first game.")
+                        description: Text("Tap New Game to start your first game.")
                     )
                 } else {
-                    List {
-                        WinTallyView(games: games)
-
-                        Section("Games") {
-                            ForEach(games) { game in
-                                NavigationLink {
-                                    GameDetailView(game: game)
-                                } label: {
-                                    GameRow(game: game)
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 14) {
+                            hero
+                            if let active = activeGame {
+                                Text("In progress").sectionLabelStyle()
+                                NavigationLink { GameDetailView(game: active) } label: {
+                                    ResumeCard(game: active)
+                                }
+                                .buttonStyle(.plain)
+                                .contextMenu {
+                                    Button("Delete", systemImage: "trash", role: .destructive) {
+                                        pendingDelete = active
+                                    }
                                 }
                             }
-                            .onDelete { pendingDelete = $0 }
+                            if !finishedGames.isEmpty {
+                                Text("Recent").sectionLabelStyle().padding(.top, 4)
+                                ForEach(finishedGames) { game in
+                                    NavigationLink { GameDetailView(game: game) } label: {
+                                        GameCard(game: game)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .contextMenu {
+                                        Button("Delete", systemImage: "trash", role: .destructive) {
+                                            pendingDelete = game
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
-                    .confirmationDialog("Delete this game?",
-                                        isPresented: Binding(
-                                            get: { pendingDelete != nil },
-                                            set: { if !$0 { pendingDelete = nil } }),
-                                        titleVisibility: .visible) {
-                        Button("Delete", role: .destructive) {
-                            if let offsets = pendingDelete { deleteGames(at: offsets) }
-                            pendingDelete = nil
-                        }
-                        Button("Cancel", role: .cancel) { pendingDelete = nil }
+                        .padding(16)
                     }
                 }
             }
-            .navigationTitle("Rummy")
+            .background(Theme.background.ignoresSafeArea())
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Rummy").font(.system(size: 20, weight: .heavy)).foregroundStyle(Theme.textPrimary)
+                }
                 ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink { StatsView() } label: { Label("Stats", systemImage: "chart.bar.fill") }
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        showingNewGame = true
-                    } label: {
-                        Label("New Game", systemImage: "plus")
-                    }
+                    NavigationLink { StatsView() } label: { Image(systemName: "chart.bar.fill") }
                 }
             }
-            .sheet(isPresented: $showingNewGame) {
-                NewGameView()
+            .safeAreaInset(edge: .bottom) {
+                PrimaryButton(title: "New Game", systemImage: "plus") { showingNewGame = true }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 8)
+            }
+            .sheet(isPresented: $showingNewGame) { NewGameView() }
+            .confirmationDialog("Delete this game?",
+                                isPresented: Binding(get: { pendingDelete != nil },
+                                                     set: { if !$0 { pendingDelete = nil } }),
+                                titleVisibility: .visible) {
+                Button("Delete", role: .destructive) {
+                    if let g = pendingDelete { context.delete(g) }
+                    pendingDelete = nil
+                }
+                Button("Cancel", role: .cancel) { pendingDelete = nil }
             }
         }
     }
 
-    private func deleteGames(at offsets: IndexSet) {
-        for index in offsets {
-            context.delete(games[index])
+    /// Head-to-head hero card for the (fixed) matchup, derived from the most recent game.
+    @ViewBuilder
+    private var hero: some View {
+        if let recent = games.first {
+            let h = StatsEngine.headToHead(player1: recent.player1Name,
+                                           player2: recent.player2Name, in: results)
+            SlateFaceoffCard(name1: recent.player1Name, wins1: h.p1Wins,
+                             name2: recent.player2Name, wins2: h.p2Wins,
+                             centerLabel: "SERIES",
+                             subtitle: "\(h.games) games played")
         }
-    }
-}
-
-/// Counts wins per player name across all finished games.
-private struct WinTallyView: View {
-    let games: [Game]
-
-    private var standings: [(name: String, wins: Int)] {
-        var counts: [String: Int] = [:]
-        for game in games where game.isFinished {
-            if let winner = game.winnerName {
-                counts[winner, default: 0] += 1
-            }
-        }
-        return counts
-            .sorted { $0.value > $1.value }
-            .map { (name: $0.key, wins: $0.value) }
-    }
-
-    var body: some View {
-        if !standings.isEmpty {
-            Section("Win Record") {
-                ForEach(standings, id: \.name) { standing in
-                    HStack {
-                        Text(standing.name)
-                        Spacer()
-                        Text("\(standing.wins) win\(standing.wins == 1 ? "" : "s")")
-                            .fontWeight(.semibold)
-                    }
-                }
-            }
-        }
-    }
-}
-
-/// One row in the games list.
-private struct GameRow: View {
-    let game: Game
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Text("\(game.player1Name) vs \(game.player2Name)")
-                    .font(.headline)
-                Spacer()
-                if game.isFinished {
-                    Image(systemName: "trophy.fill")
-                        .foregroundStyle(.yellow)
-                }
-            }
-            HStack {
-                Text("\(game.player1Total) – \(game.player2Total)")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                if let winner = game.winnerName {
-                    Text("🏆 \(winner)")
-                        .font(.caption)
-                } else {
-                    Text(game.createdAt, style: .date)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
-        .padding(.vertical, 2)
     }
 }
