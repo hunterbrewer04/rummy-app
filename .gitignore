@@ -14,3 +14,7 @@ RummyTracker.xcodeproj/project.xcworkspace/xcuserdata/
 # Swift Package Manager
 .build/
 .swiftpm/
+
+# Local-only working docs (kept out of the repo on purpose)
+CLAUDE.md
+PLAN_TIER_1_2.md
