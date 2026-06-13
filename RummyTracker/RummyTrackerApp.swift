@@ -23,14 +23,17 @@ struct RummyTrackerApp: App {
 
     /// One-time migration: games decided under the pre-durable build never had
     /// their winner snapshotted. Finalize any already-decided game so its result
-    /// shows correctly. Idempotent — finalizeIfNeeded guards finishedAt == nil.
+    /// shows correctly. Runs ONCE — re-running every launch would re-lock games
+    /// the user intentionally reopened.
     @MainActor
     private static func backfillFinishedGames(in context: ModelContext) {
+        let flagKey = "didBackfillDurableWinnersV1"
+        guard !UserDefaults.standard.bool(forKey: flagKey) else { return }
         guard let games = try? context.fetch(FetchDescriptor<Game>()) else { return }
         for game in games {
-            // Stamp the historical decide-time, not launch time.
             game.finalizeIfNeeded(now: game.orderedHands.last?.createdAt ?? game.createdAt)
         }
         try? context.save()
+        UserDefaults.standard.set(true, forKey: flagKey)
     }
 }

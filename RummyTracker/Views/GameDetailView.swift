@@ -204,7 +204,7 @@ private struct HandRow: View {
 
     var body: some View {
         Button {
-            editing = true
+            if !game.isFinished { editing = true }
         } label: {
             HStack {
                 Text("Hand \(number)")
