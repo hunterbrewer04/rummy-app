@@ -19,3 +19,9 @@ RummyTracker.xcodeproj/project.xcworkspace/xcuserdata/
 CLAUDE.md
 PLAN_TIER_1_2.md
 WORKLOG_TIER_1_2.md
+UI_REDESIGN_SPEC.md
+PLAN_UI_REDESIGN.md
+WORKLOG_UI_REDESIGN.md
+
+# Visual brainstorming companion (local-only)
+.superpowers/
