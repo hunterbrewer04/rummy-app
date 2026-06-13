@@ -17,10 +17,10 @@ struct AddHandView: View {
         NavigationStack {
             Form {
                 Section {
-                    scoreField(label: game.player1Name, text: $player1Text)
-                    scoreField(label: game.player2Name, text: $player2Text)
+                    scoreRow(label: game.player1Name, text: $player1Text)
+                    scoreRow(label: game.player2Name, text: $player2Text)
                 } footer: {
-                    Text("Enter this hand's points for each player. Negative numbers are allowed.")
+                    Text("Enter this hand's points for each player. Use the buttons for quick entry; negative numbers are allowed.")
                 }
             }
             .navigationTitle(editingHand == nil ? "Add Hand" : "Edit Hand")
@@ -38,12 +38,40 @@ struct AddHandView: View {
         }
     }
 
-    private func scoreField(label: String, text: Binding<String>) -> some View {
-        LabeledContent(label) {
-            TextField("0", text: text)
-                .keyboardType(.numbersAndPunctuation)
-                .multilineTextAlignment(.trailing)
+    private func scoreRow(label: String, text: Binding<String>) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(label).font(.headline)
+                Spacer()
+                TextField("0", text: text)
+                    .keyboardType(.numbersAndPunctuation)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 90)
+                    .textFieldStyle(.roundedBorder)
+            }
+            HStack(spacing: 8) {
+                Button { adjust(text, by: -5) } label: {
+                    Image(systemName: "minus.circle.fill")
+                }
+                .accessibilityLabel("Minus 5")
+                ForEach([5, 10, 25, 50], id: \.self) { amount in
+                    Button("+\(amount)") { adjust(text, by: amount) }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.accentColor.opacity(0.15), in: Capsule())
+                }
+                Spacer()
+            }
+            .font(.title3)
+            .buttonStyle(.borderless)   // every button opts out of the Form row tap
         }
+        .padding(.vertical, 4)
+    }
+
+    /// Adds `delta` to the current parsed value (treating blank/invalid as 0).
+    private func adjust(_ text: Binding<String>, by delta: Int) {
+        let current = parsedScore(text.wrappedValue) ?? 0
+        text.wrappedValue = String(current + delta)
     }
 
     private func populateForEdit() {
