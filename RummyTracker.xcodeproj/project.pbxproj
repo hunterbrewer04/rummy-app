@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02241A8B07A9055C74D4B8EE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55ED86062963829ACDB7C56 /* Game.swift */; };
+		02D988F07838003214B5E719 /* ScoringEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5EA226A2A5EF741CE3D28 /* ScoringEngineTests.swift */; };
+		0C10EF13898F2131C0311E6B /* AddHandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A284D6F56093513D35D56E4 /* AddHandView.swift */; };
+		455D74F4DC54BA7E45692EF5 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2996886E2C4AA9C737C50 /* Hand.swift */; };
+		8D85228D67977767243C571A /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580D2743D1B17872579188B /* NewGameView.swift */; };
+		8DC35217B1BF4D09876B1933 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2920569F1A8204BA42DC4971 /* GamesListView.swift */; };
+		AE69443F45E3920827E36357 /* RummyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB65F90683AE8F0AF7EBE28 /* RummyTrackerApp.swift */; };
+		D68157F54778664D18310B96 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099CE13CD36E9DE9284C06DC /* GameDetailView.swift */; };
+		F6BE5C4338F8759B81FA00FB /* ScoringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C67CAB4BD225FD6A10B5FB7 /* ScoringEngine.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9EA4FD15D1C86DD841186A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C859C148B5D8A94B3FB178AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA82C29D9EC4A4703AA7608D;
+			remoteInfo = RummyTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		099CE13CD36E9DE9284C06DC /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
+		2920569F1A8204BA42DC4971 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
+		2A284D6F56093513D35D56E4 /* AddHandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHandView.swift; sourceTree = "<group>"; };
+		3C67CAB4BD225FD6A10B5FB7 /* ScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngine.swift; sourceTree = "<group>"; };
+		3FB5EA226A2A5EF741CE3D28 /* ScoringEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngineTests.swift; sourceTree = "<group>"; };
+		5FA2996886E2C4AA9C737C50 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		6EB65F90683AE8F0AF7EBE28 /* RummyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RummyTrackerApp.swift; sourceTree = "<group>"; };
+		B580D2743D1B17872579188B /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
+		BAC8F5C3BB00A040691A7D17 /* RummyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RummyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3BEC32FB87165FC65BED494 /* RummyTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RummyTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55ED86062963829ACDB7C56 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		7066F9B5FC124DC67CA5B224 /* RummyTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				3FB5EA226A2A5EF741CE3D28 /* ScoringEngineTests.swift */,
+			);
+			path = RummyTrackerTests;
+			sourceTree = "<group>";
+		};
+		7E1B8043D2DD184EA839B941 /* RummyTracker */ = {
+			isa = PBXGroup;
+			children = (
+				6EB65F90683AE8F0AF7EBE28 /* RummyTrackerApp.swift */,
+				B3CF68D0F073942B97D8AF49 /* Models */,
+				84F3B4CD866D1678F47A1202 /* Views */,
+			);
+			path = RummyTracker;
+			sourceTree = "<group>";
+		};
+		84F3B4CD866D1678F47A1202 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2A284D6F56093513D35D56E4 /* AddHandView.swift */,
+				099CE13CD36E9DE9284C06DC /* GameDetailView.swift */,
+				2920569F1A8204BA42DC4971 /* GamesListView.swift */,
+				B580D2743D1B17872579188B /* NewGameView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8A5DAE69B4F81808AA1ACD23 = {
+			isa = PBXGroup;
+			children = (
+				7E1B8043D2DD184EA839B941 /* RummyTracker */,
+				7066F9B5FC124DC67CA5B224 /* RummyTrackerTests */,
+				DED6960940BDD408F2FCABD8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B3CF68D0F073942B97D8AF49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E55ED86062963829ACDB7C56 /* Game.swift */,
+				5FA2996886E2C4AA9C737C50 /* Hand.swift */,
+				3C67CAB4BD225FD6A10B5FB7 /* ScoringEngine.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DED6960940BDD408F2FCABD8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BAC8F5C3BB00A040691A7D17 /* RummyTracker.app */,
+				D3BEC32FB87165FC65BED494 /* RummyTrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A0E07608D6FAAD7203941A9 /* RummyTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0C5DD9893F50AFCB0927F68 /* Build configuration list for PBXNativeTarget "RummyTrackerTests" */;
+			buildPhases = (
+				810E3E9A867CE888C2BB2BD8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49DC06BEFEFF33E6D9387989 /* PBXTargetDependency */,
+			);
+			name = RummyTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = RummyTrackerTests;
+			productReference = D3BEC32FB87165FC65BED494 /* RummyTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DA82C29D9EC4A4703AA7608D /* RummyTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4707F4812D4414602BCEBF8D /* Build configuration list for PBXNativeTarget "RummyTracker" */;
+			buildPhases = (
+				7801322DF63B3CD9F7D8C8FD /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RummyTracker;
+			packageProductDependencies = (
+			);
+			productName = RummyTracker;
+			productReference = BAC8F5C3BB00A040691A7D17 /* RummyTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C859C148B5D8A94B3FB178AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2650;
+				TargetAttributes = {
+					1A0E07608D6FAAD7203941A9 = {
+						ProvisioningStyle = Automatic;
+					};
+					DA82C29D9EC4A4703AA7608D = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4B1BCD6FCF13282480B6F839 /* Build configuration list for PBXProject "RummyTracker" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8A5DAE69B4F81808AA1ACD23;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = DED6960940BDD408F2FCABD8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA82C29D9EC4A4703AA7608D /* RummyTracker */,
+				1A0E07608D6FAAD7203941A9 /* RummyTrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7801322DF63B3CD9F7D8C8FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C10EF13898F2131C0311E6B /* AddHandView.swift in Sources */,
+				02241A8B07A9055C74D4B8EE /* Game.swift in Sources */,
+				D68157F54778664D18310B96 /* GameDetailView.swift in Sources */,
+				8DC35217B1BF4D09876B1933 /* GamesListView.swift in Sources */,
+				455D74F4DC54BA7E45692EF5 /* Hand.swift in Sources */,
+				8D85228D67977767243C571A /* NewGameView.swift in Sources */,
+				AE69443F45E3920827E36357 /* RummyTrackerApp.swift in Sources */,
+				F6BE5C4338F8759B81FA00FB /* ScoringEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		810E3E9A867CE888C2BB2BD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02D988F07838003214B5E719 /* ScoringEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49DC06BEFEFF33E6D9387989 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA82C29D9EC4A4703AA7608D /* RummyTracker */;
+			targetProxy = 9EA4FD15D1C86DD841186A09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2F59B144531BD62ADB83C956 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		51082CD1CA0701F6726ECBC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hunterbrewer.RummyTrackerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RummyTracker.app/RummyTracker";
+			};
+			name = Debug;
+		};
+		51F2228E377524EB8AA0379E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = K425JTCV6T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Rummy;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hunterbrewer.RummyTracker;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		77FA01A30767B7FA07567F9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B4E69E7F1B2D94F579EABE54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hunterbrewer.RummyTrackerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RummyTracker.app/RummyTracker";
+			};
+			name = Release;
+		};
+		C2EB5ED2D2F79EF50A049FC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = K425JTCV6T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Rummy;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hunterbrewer.RummyTracker;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4707F4812D4414602BCEBF8D /* Build configuration list for PBXNativeTarget "RummyTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51F2228E377524EB8AA0379E /* Debug */,
+				C2EB5ED2D2F79EF50A049FC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4B1BCD6FCF13282480B6F839 /* Build configuration list for PBXProject "RummyTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77FA01A30767B7FA07567F9C /* Debug */,
+				2F59B144531BD62ADB83C956 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B0C5DD9893F50AFCB0927F68 /* Build configuration list for PBXNativeTarget "RummyTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51082CD1CA0701F6726ECBC5 /* Debug */,
+				B4E69E7F1B2D94F579EABE54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C859C148B5D8A94B3FB178AF /* Project object */;
+}

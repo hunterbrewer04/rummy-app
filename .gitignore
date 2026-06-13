@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Xcode build output
+build/
+DerivedData/
+
+# Xcode user-specific state (keep the shared project, ignore per-user files)
+*.xcuserstate
+xcuserdata/
+RummyTracker.xcodeproj/xcuserdata/
+RummyTracker.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Swift Package Manager
+.build/
+.swiftpm/
