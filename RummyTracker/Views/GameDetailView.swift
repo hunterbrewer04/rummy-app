@@ -7,6 +7,8 @@ struct GameDetailView: View {
     let game: Game
     @Environment(\.modelContext) private var context
     @State private var showingAddHand = false
+    /// Drives the trophy bounce; toggled on appear (already-finished games) and on live finish.
+    @State private var celebrate = false
 
     var body: some View {
         List {
@@ -16,8 +18,12 @@ struct GameDetailView: View {
 
             if let winner = game.winnerName {
                 Section {
-                    VStack(spacing: 4) {
-                        Text("🏆").font(.largeTitle)
+                    VStack(spacing: 8) {
+                        Image(systemName: "trophy.fill")
+                            .font(.system(size: 44))
+                            .foregroundStyle(.yellow)
+                            .symbolEffect(.bounce, value: celebrate)
+                            .accessibilityHidden(true) // decorative; "X wins!" conveys the result
                         Text("\(winner) wins!").font(.headline)
                     }
                     .frame(maxWidth: .infinity)
@@ -39,6 +45,18 @@ struct GameDetailView: View {
         }
         .navigationTitle("\(game.player1Name) vs \(game.player2Name)")
         .navigationBarTitleDisplayMode(.inline)
+        // Closure form intentionally suppresses the haptic on the un-finish transition.
+        .sensoryFeedback(trigger: game.isFinished) { _, isFinished in
+            isFinished ? .success : nil
+        }
+        // `.id` forces a fresh confetti run if the winner changes.
+        .overlay { if game.isFinished { ConfettiView().id(game.winnerName) } }
+        .onAppear {
+            if game.isFinished { celebrate.toggle() }
+        }
+        .onChange(of: game.isFinished) { _, isFinished in
+            if isFinished { celebrate.toggle() }
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {

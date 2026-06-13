@@ -10,6 +10,7 @@
 		02241A8B07A9055C74D4B8EE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55ED86062963829ACDB7C56 /* Game.swift */; };
 		02D988F07838003214B5E719 /* ScoringEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5EA226A2A5EF741CE3D28 /* ScoringEngineTests.swift */; };
 		0C10EF13898F2131C0311E6B /* AddHandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A284D6F56093513D35D56E4 /* AddHandView.swift */; };
+		24CE3B87800AF8409987DB5C /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD1DB741534C3E19BC48022 /* ConfettiView.swift */; };
 		455D74F4DC54BA7E45692EF5 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2996886E2C4AA9C737C50 /* Hand.swift */; };
 		8D85228D67977767243C571A /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580D2743D1B17872579188B /* NewGameView.swift */; };
 		8DC35217B1BF4D09876B1933 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2920569F1A8204BA42DC4971 /* GamesListView.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		099CE13CD36E9DE9284C06DC /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
+		1CD1DB741534C3E19BC48022 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		2920569F1A8204BA42DC4971 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		2A284D6F56093513D35D56E4 /* AddHandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHandView.swift; sourceTree = "<group>"; };
 		3C67CAB4BD225FD6A10B5FB7 /* ScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngine.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				2A284D6F56093513D35D56E4 /* AddHandView.swift */,
+				1CD1DB741534C3E19BC48022 /* ConfettiView.swift */,
 				099CE13CD36E9DE9284C06DC /* GameDetailView.swift */,
 				2920569F1A8204BA42DC4971 /* GamesListView.swift */,
 				B580D2743D1B17872579188B /* NewGameView.swift */,
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C10EF13898F2131C0311E6B /* AddHandView.swift in Sources */,
+				24CE3B87800AF8409987DB5C /* ConfettiView.swift in Sources */,
 				02241A8B07A9055C74D4B8EE /* Game.swift in Sources */,
 				D68157F54778664D18310B96 /* GameDetailView.swift in Sources */,
 				8DC35217B1BF4D09876B1933 /* GamesListView.swift in Sources */,
