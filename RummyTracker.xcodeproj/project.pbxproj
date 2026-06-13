@@ -12,11 +12,13 @@
 		0C10EF13898F2131C0311E6B /* AddHandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A284D6F56093513D35D56E4 /* AddHandView.swift */; };
 		1695B733ED43662DC1CDB896 /* StatsEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021074B81B17E89A457C79E6 /* StatsEngineTests.swift */; };
 		24CE3B87800AF8409987DB5C /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD1DB741534C3E19BC48022 /* ConfettiView.swift */; };
+		2DDA969E12AB8A8BA5CA16DA /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C88AC706032A323DF631725 /* Components.swift */; };
 		455D74F4DC54BA7E45692EF5 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2996886E2C4AA9C737C50 /* Hand.swift */; };
 		8D85228D67977767243C571A /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580D2743D1B17872579188B /* NewGameView.swift */; };
 		8DC35217B1BF4D09876B1933 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2920569F1A8204BA42DC4971 /* GamesListView.swift */; };
 		AE69443F45E3920827E36357 /* RummyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB65F90683AE8F0AF7EBE28 /* RummyTrackerApp.swift */; };
 		B356854588A5CD58434A8FB1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BB0FD5FAF7AEF287D4149 /* Theme.swift */; };
+		B78CA752113284F169EC28D3 /* ScorePanels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625095DDD100AD9230F76F55 /* ScorePanels.swift */; };
 		BDF756D152BD9F471B98D654 /* StatsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB698CDF677DD2A18E8761D6 /* StatsEngine.swift */; };
 		D68157F54778664D18310B96 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099CE13CD36E9DE9284C06DC /* GameDetailView.swift */; };
 		E71CC6F14562B7837105A5A4 /* GameFinalizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AF3289B164E6472D1190C1 /* GameFinalizeTests.swift */; };
@@ -44,8 +46,10 @@
 		3C67CAB4BD225FD6A10B5FB7 /* ScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngine.swift; sourceTree = "<group>"; };
 		3FB5EA226A2A5EF741CE3D28 /* ScoringEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngineTests.swift; sourceTree = "<group>"; };
 		5FA2996886E2C4AA9C737C50 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		625095DDD100AD9230F76F55 /* ScorePanels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePanels.swift; sourceTree = "<group>"; };
 		6EB65F90683AE8F0AF7EBE28 /* RummyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RummyTrackerApp.swift; sourceTree = "<group>"; };
 		906FA1196010E0F692C5CC69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C88AC706032A323DF631725 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		9F875D3F125E62FAB1CBA1BE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		B580D2743D1B17872579188B /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
 		BAC8F5C3BB00A040691A7D17 /* RummyTracker.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RummyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +74,8 @@
 		7C2E0AB18C69AADA1D20559B /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				9C88AC706032A323DF631725 /* Components.swift */,
+				625095DDD100AD9230F76F55 /* ScorePanels.swift */,
 				F19BB0FD5FAF7AEF287D4149 /* Theme.swift */,
 			);
 			path = DesignSystem;
@@ -223,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C10EF13898F2131C0311E6B /* AddHandView.swift in Sources */,
+				2DDA969E12AB8A8BA5CA16DA /* Components.swift in Sources */,
 				24CE3B87800AF8409987DB5C /* ConfettiView.swift in Sources */,
 				02241A8B07A9055C74D4B8EE /* Game.swift in Sources */,
 				D68157F54778664D18310B96 /* GameDetailView.swift in Sources */,
@@ -230,6 +237,7 @@
 				455D74F4DC54BA7E45692EF5 /* Hand.swift in Sources */,
 				8D85228D67977767243C571A /* NewGameView.swift in Sources */,
 				AE69443F45E3920827E36357 /* RummyTrackerApp.swift in Sources */,
+				B78CA752113284F169EC28D3 /* ScorePanels.swift in Sources */,
 				F6BE5C4338F8759B81FA00FB /* ScoringEngine.swift in Sources */,
 				BDF756D152BD9F471B98D654 /* StatsEngine.swift in Sources */,
 				E94C035D21FB99587A30B872 /* StatsView.swift in Sources */,
