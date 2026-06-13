@@ -13,6 +13,7 @@ struct GameDetailView: View {
     @State private var showUndo = false
     @State private var undoToken = 0
     @State private var showingReopenConfirm = false
+    @State private var rematch: Game?
 
     var body: some View {
         List {
@@ -79,12 +80,21 @@ struct GameDetailView: View {
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    showingAddHand = true
-                } label: {
-                    Label("Add Hand", systemImage: "plus")
+                if game.isFinished {
+                    Button("Rematch", systemImage: "arrow.clockwise") {
+                        let new = Game(player1Name: game.player1Name,
+                                       player2Name: game.player2Name,
+                                       targetScore: game.targetScore)
+                        context.insert(new)
+                        rematch = new
+                    }
+                } else {
+                    Button {
+                        showingAddHand = true
+                    } label: {
+                        Label("Add Hand", systemImage: "plus")
+                    }
                 }
-                .disabled(game.isFinished)
             }
             ToolbarItem(placement: .secondaryAction) {
                 if game.isFinished {
@@ -92,6 +102,7 @@ struct GameDetailView: View {
                 }
             }
         }
+        .navigationDestination(item: $rematch) { GameDetailView(game: $0) }
         .sheet(isPresented: $showingAddHand) {
             AddHandView(game: game)
         }
