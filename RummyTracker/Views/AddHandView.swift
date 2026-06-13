@@ -15,14 +15,18 @@ struct AddHandView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section {
-                    scoreRow(label: game.player1Name, text: $player1Text)
-                    scoreRow(label: game.player2Name, text: $player2Text)
-                } footer: {
-                    Text("Enter this hand's points for each player. Use the buttons for quick entry; negative numbers are allowed.")
-                }
+            VStack(spacing: 0) {
+                playerBlock(name: game.player1Name, player: 1, text: $player1Text)
+                Divider().overlay(Theme.divider).padding(.horizontal, 18)
+                playerBlock(name: game.player2Name, player: 2, text: $player2Text)
+                Spacer(minLength: 0)
+                PrimaryButton(title: "Save Hand") { save() }
+                    .padding(.horizontal, 15)
+                    .padding(.bottom, 15)
+                    .opacity(isValid ? 1 : 0.5)
+                    .disabled(!isValid)
             }
+            .background(Theme.background.ignoresSafeArea())
             .navigationTitle(editingHand == nil ? "Add Hand" : "Edit Hand")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -30,42 +34,37 @@ struct AddHandView: View {
                     Button("Cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { save() }
-                        .disabled(!isValid)
+                    Button("Save") { save() }.disabled(!isValid).fontWeight(.heavy)
                 }
             }
             .onAppear(perform: populateForEdit)
         }
     }
 
-    private func scoreRow(label: String, text: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(label).font(.headline)
-                Spacer()
-                TextField("0", text: text)
-                    .keyboardType(.numbersAndPunctuation)
-                    .multilineTextAlignment(.trailing)
-                    .frame(width: 90)
-                    .textFieldStyle(.roundedBorder)
+    private func playerBlock(name: String, player: Int, text: Binding<String>) -> some View {
+        let accent = Theme.playerColor(player)
+        return VStack(spacing: 12) {
+            HStack(spacing: 7) {
+                Circle().fill(accent).frame(width: 9, height: 9)
+                Text(name).font(.system(size: 14, weight: .heavy)).foregroundStyle(accent)
             }
+            TextField("0", text: text)
+                .keyboardType(.numbersAndPunctuation)
+                .multilineTextAlignment(.center)
+                .font(Theme.number(40))
+                .foregroundStyle(accent)
+                .frame(maxWidth: 150)
+                .padding(.bottom, 4)
+                .overlay(alignment: .bottom) { Rectangle().fill(accent).frame(height: 2.5) }
             HStack(spacing: 8) {
-                Button { adjust(text, by: -5) } label: {
-                    Image(systemName: "minus.circle.fill")
-                }
-                .accessibilityLabel("Minus 5")
                 ForEach([5, 10, 25, 50], id: \.self) { amount in
-                    Button("+\(amount)") { adjust(text, by: amount) }
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(Color.accentColor.opacity(0.15), in: Capsule())
+                    ScoreChip(amount: amount, player: player) { adjust(text, by: amount) }
                 }
-                Spacer()
             }
-            .font(.title3)
-            .buttonStyle(.borderless)   // every button opts out of the Form row tap
+            .padding(.horizontal, 18)
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 20)
+        .frame(maxWidth: .infinity)
     }
 
     /// Adds `delta` to the current parsed value (treating blank/invalid as 0).
@@ -99,7 +98,6 @@ struct AddHandView: View {
     }
 
     private func save() {
-        // isValid gates the Save button, so these are guaranteed non-nil here.
         let p1 = parsedScore(player1Text) ?? 0
         let p2 = parsedScore(player2Text) ?? 0
 
@@ -108,7 +106,7 @@ struct AddHandView: View {
             hand.player2Score = p2
         } else {
             let hand = Hand(index: game.nextHandIndex, player1Score: p1, player2Score: p2)
-            hand.game = game            // wires up the inverse relationship
+            hand.game = game
             context.insert(hand)
         }
         game.finalizeIfNeeded()
