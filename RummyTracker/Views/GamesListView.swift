@@ -46,6 +46,9 @@ struct GamesListView: View {
             }
             .navigationTitle("Rummy")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink { StatsView() } label: { Label("Stats", systemImage: "chart.bar.fill") }
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         showingNewGame = true
