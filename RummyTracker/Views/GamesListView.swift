@@ -96,7 +96,10 @@ struct GamesListView: View {
     /// Head-to-head hero card for the (fixed) matchup, derived from the most recent game.
     @ViewBuilder
     private var hero: some View {
-        if let recent = games.first {
+        // Anchor the matchup on the most recent FINISHED game so the hero's
+        // player→color assignment matches StatsView; fall back to the newest
+        // game (e.g. when only an in-progress game exists) for a 0–0 cold start.
+        if let recent = finishedGames.first ?? games.first {
             let h = StatsEngine.headToHead(player1: recent.player1Name,
                                            player2: recent.player2Name, in: results)
             SlateFaceoffCard(name1: recent.player1Name, wins1: h.p1Wins,
